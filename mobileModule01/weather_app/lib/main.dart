@@ -40,14 +40,16 @@ class _MyHomePageState extends State<MyHomePage>
     super.dispose();
   }
 
+  void _click() {
+    setState(() {
+      _search = _searchController.text;
+      _searchController.text = "";
+    });
+  }
+
   TextField _title() => TextField(
     controller: _searchController,
-    onSubmitted: (_) {
-      setState(() {
-        _search = _searchController.text;
-        _searchController.text = "";
-      });
-    },
+    onSubmitted: (_) => _click(),
     decoration: const InputDecoration(
       icon: Icon(Icons.search, color: Colors.white54),
       hintText: 'Search location...',
@@ -61,12 +63,7 @@ class _MyHomePageState extends State<MyHomePage>
     Container(width: 2, height: 35, color: Colors.white),
     IconButton(
       icon: const Icon(Icons.send, color: Colors.white),
-      onPressed: () {
-        setState(() {
-          _search = _searchController.text;
-          _searchController.text = "";
-        });
-      },
+      onPressed: () => _click(),
     ),
   ];
 
