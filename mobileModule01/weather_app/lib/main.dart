@@ -25,6 +25,7 @@ class _MyHomePageState extends State<MyHomePage>
   late TabController _tabController;
   late TextEditingController _searchController;
   String _search = "";
+  late double _width;
 
   @override
   void initState() {
@@ -46,6 +47,21 @@ class _MyHomePageState extends State<MyHomePage>
       _searchController.text = "";
     });
   }
+
+  LayoutBuilder _layoutBuilder(String text) => LayoutBuilder(
+    builder: (context, constraints) {
+      return SizedBox(
+        width: _width,
+        child: FittedBox(
+          fit: BoxFit.scaleDown,
+          child: Text(
+            text,
+            style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
+          ),
+        ),
+      );
+    },
+  );
 
   TextField _title() => TextField(
     controller: _searchController,
@@ -86,16 +102,7 @@ class _MyHomePageState extends State<MyHomePage>
     child: SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text(
-            text,
-            style: const TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
-          ),
-          Text(
-            _search,
-            style: const TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
-          ),
-        ],
+        children: [_layoutBuilder(text), _layoutBuilder(_search)],
       ),
     ),
   );
@@ -103,13 +110,13 @@ class _MyHomePageState extends State<MyHomePage>
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
-    final width = MediaQuery.of(context).size.width;
+    _width = MediaQuery.of(context).size.width;
 
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 91, 93, 114),
-        title: width < 60 ? null : _title(),
-        actions: width < 60 ? null : _actions(),
+        title: _width < 60 ? null : _title(),
+        actions: _width < 60 ? null : _actions(),
       ),
       body: TabBarView(
         controller: _tabController,
