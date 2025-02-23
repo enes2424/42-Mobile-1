@@ -122,7 +122,7 @@ class _MyHomePageState extends State<MyHomePage>
         controller: _tabController,
         children: [_page('Currently'), _page('Today'), _page('Weekly')],
       ),
-      bottomNavigationBar: height <= 75 ? null : _bottomAppBar(),
+      bottomNavigationBar: height <= 80 ? null : _bottomAppBar(),
     );
   }
 }
