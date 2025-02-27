@@ -118,10 +118,13 @@ class _MyHomePageState extends State<MyHomePage>
         title: _width < 60 ? null : _title(),
         actions: _width < 60 ? null : _actions(),
       ),
-      body: _height < 136 + MediaQuery.of(context).padding.top ? null : TabBarView(
-        controller: _tabController,
-        children: [_page('Currently'), _page('Today'), _page('Weekly')],
-      ),
+      body:
+          height < 136 + MediaQuery.of(context).padding.top
+              ? null
+              : TabBarView(
+                controller: _tabController,
+                children: [_page('Currently'), _page('Today'), _page('Weekly')],
+              ),
       bottomNavigationBar: height < 80 ? null : _bottomAppBar(),
     );
   }
