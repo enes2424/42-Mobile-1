@@ -86,12 +86,12 @@ class _MyHomePageState extends State<MyHomePage>
   BottomAppBar _bottomAppBar() => BottomAppBar(
     child: TabBar(
       controller: _tabController,
-      dividerColor: Colors.transparent,
       tabs: const [
         Tab(icon: Icon(Icons.settings), text: "Currently"),
         Tab(icon: Icon(Icons.today), text: "Today"),
         Tab(icon: Icon(Icons.calendar_view_week), text: "Weekly"),
       ],
+      dividerColor: Colors.transparent,
       overlayColor: const WidgetStatePropertyAll(Colors.transparent),
       indicatorColor: Colors.blue,
       labelColor: Colors.blue,
